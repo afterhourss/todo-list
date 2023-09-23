@@ -8,14 +8,17 @@ class Project {
       {
         desc: "this my first todo list",
         date: "30",
+        priority: 2,
       },
       {
         desc: "this my second todo list",
         date: "12",
+        priority: 1,
       },
       {
         desc: "this my third todo list",
         date: "29",
+        priority: 3,
       },
     ];
   }
@@ -25,22 +28,27 @@ class Project {
   pushTodo(desc) {
     this.allTodos.push(desc);
   }
+  setTodosPriorityOrder() {
+    this.allTodos.sort((a, b) => b.priority - a.priority);
+    return this.allTodos;
+  }
+  // setPriorityOrder(priority) {
+  //   this.allTodos.priority.sort((a, b) => );
+  // }
+  // removeTodo(){
+  //   this.allTodos = this.allTodos.map(todo =>)
+  // }
 }
 
 class Todo {
-  constructor(desc) {
+  constructor(desc, priority) {
     this.desc = desc;
     this.date = new Date().getDate().toString();
+    this.priority = priority;
   }
 }
 
 let project = new Project("🧾Projects");
-
-const addTodo = () => {
-  const inputTodoDesc = document.querySelector("[data-form-value]").value;
-  const newTodo = new Todo(inputTodoDesc);
-  project.pushTodo(newTodo);
-};
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -48,23 +56,41 @@ form.addEventListener("submit", (e) => {
   render();
 });
 
-const refreshRender = () => {
-  container.innerHTML = "";
+const addTodo = () => {
+  const inputTodoDesc = document.querySelector("[data-form-value]").value;
+  const inputTodoPriority = document.querySelector("[data-priority]").value;
+  const newTodo = new Todo(inputTodoDesc, inputTodoPriority);
+  project.pushTodo(newTodo);
 };
 
-const createTodo = (todo) => {
+const createTodo = (todo, priority) => {
   // create todo
   const list = document.createElement("div");
   const checkbox = document.createElement("input");
   const desc = document.createElement("p");
 
   list.classList.add("list");
+  list.setAttribute("data-priority", priority);
   checkbox.setAttribute("type", "checkbox");
   desc.innerText = todo;
 
   container.appendChild(list);
   list.appendChild(checkbox);
   list.appendChild(desc);
+
+  if (priority >= 3) {
+    list.classList.add("list-priority-3");
+  } else if (priority == 2) {
+    list.classList.add("list-priority-2");
+  }
+};
+
+// const todoChecked = () => {
+
+// }
+
+const refreshRender = () => {
+  container.innerHTML = "";
 };
 
 const render = () => {
@@ -73,9 +99,10 @@ const render = () => {
   projectTitle.innerText = project.title;
 
   // render todo list
+
   refreshRender();
-  project.getTodo().forEach((todo) => {
-    createTodo(todo);
+  project.setTodosPriorityOrder().forEach((todo) => {
+    createTodo(todo.desc, todo.priority);
   });
 };
 
