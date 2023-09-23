@@ -1,0 +1,48 @@
+$regular-font: 22px;
+
+$not-active: #c7c7c7;
+
+$tiny-spacing: 8px;
+$small-spacing: 16px;
+$base-spacing: 24px;
+$large-spacing: 48px;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+.todo-form {
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  width: 600px;
+  margin: auto;
+  margin-top: 120px;
+  padding: $large-spacing;
+  border: 2px solid #858585;
+  border-radius: 13px;
+  .header {
+    .sub-title {
+      color: $not-active;
+    }
+  }
+  .todo-form {
+    margin-bottom: $base-spacing;
+  }
+  .list {
+    display: flex;
+    padding: $tiny-spacing 0;
+    input {
+      margin: 0 $tiny-spacing;
+    }
+  }
+}
