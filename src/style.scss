@@ -41,8 +41,17 @@ body {
   .list {
     display: flex;
     padding: $tiny-spacing 0;
+    margin: $tiny-spacing 0;
+    border-radius: 8px;
+    border: 1px solid #000;
     input {
       margin: 0 $tiny-spacing;
     }
+  }
+  .list-priority-2 {
+    background-color: rgb(173, 255, 167);
+  }
+  .list-priority-3 {
+    background-color: rgb(255, 140, 140);
   }
 }

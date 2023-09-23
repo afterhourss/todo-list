@@ -33,9 +33,18 @@ body {
 .container .list {
   display: flex;
   padding: 8px 0;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #000;
 }
 .container .list input {
   margin: 0 8px;
+}
+.container .list-priority-2 {
+  background-color: rgb(173, 255, 167);
+}
+.container .list-priority-3 {
+  background-color: rgb(255, 140, 140);
 }
 
 /*# sourceMappingURL=style.css.map */
